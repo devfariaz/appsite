@@ -122,7 +122,7 @@ class ProductResource extends Resource
                         ])
                         ->grid(2)
                         ->defaultItems(1)
-                        ->addActionLabel('Adicionar outra imagem')
+                        ->addActionLabel('Adicionar imagem')
                         ->reorderableWithButtons()
                         ->columnSpanFull(),
                 ])->collapsible(),

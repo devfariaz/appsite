@@ -31,8 +31,10 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             //->brandName('Painel de Controle - ' . config('app.name'))
             ->colors([
-                'primary' => Color::Sky,
+                'primary' => Color::Purple,
+                'gray' => Color::Slate,
             ])
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\Filament\Admin\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\Filament\Admin\Pages')
