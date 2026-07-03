@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('long_description')->nullable(); // Texto rico para a página do produto
             $table->decimal('price', 10, 2)->nullable();
             $table->json('features')->nullable(); // Para os checkmarks de benefícios
+            $table->integer('rating')->default(5);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

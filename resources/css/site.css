@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@theme {
+  /* Cores da Healthy Way DV */
+  --color-brand-50: #f7fff3;
+  --color-brand-100: #e9f8e4;
+  --color-brand-600: #238554;
+  --color-brand-800: #12613f;
+  --color-brand-900: #0b432d;
+  --color-brand-950: #062b1c;
+  --color-brand-text: #0e3024;
+  --color-brand-muted: #66766f;
+
+  /* Fontes */
+  --font-sans: "Segoe UI", Arial, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  /* Animação do botão do WhatsApp */
+  --animate-wiggle: wiggle 2.4s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  45% { transform: rotate(-8deg) scale(1.08); }
+  70% { transform: rotate(6deg) scale(1.02); }
+}
