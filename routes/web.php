@@ -21,3 +21,4 @@ Route::get('/contato', function () {
 
 Route::get('/produtos', [ProductController::class, 'index'])->name('products');
 Route::get('/produto/{slug}', [ProductController::class, 'show'])->name('produto.show');
+Route::post('/produtos/{id}/avaliar', [ProductController::class, 'storeReview'])->name('reviews.store');

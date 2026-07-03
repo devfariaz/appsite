@@ -50,8 +50,8 @@ class ProductController extends Controller
         // 2. Lógica para "Você também pode gostar"
         // Tenta buscar 3 produtos da mesma categoria, excluindo o produto atual
         $recommendedProducts = Product::with(['images' => function ($query) {
-                $query->where('is_main', true); // Traz só a capa
-            }])
+            $query->where('is_main', true); // Traz só a capa
+        }])
             ->where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
             ->where('is_active', true)
@@ -62,15 +62,15 @@ class ProductController extends Controller
         // Se a categoria tiver menos de 3 produtos, completa com produtos de outras categorias
         if ($recommendedProducts->count() < 3) {
             $moreProducts = Product::with(['images' => function ($query) {
-                    $query->where('is_main', true);
-                }])
+                $query->where('is_main', true);
+            }])
                 ->where('id', '!=', $product->id)
                 ->whereNotIn('id', $recommendedProducts->pluck('id')) // Não repetir os que já pegou
                 ->where('is_active', true)
                 ->inRandomOrder()
                 ->take(3 - $recommendedProducts->count())
                 ->get();
-                
+
             $recommendedProducts = $recommendedProducts->merge($moreProducts);
         }
 
@@ -78,5 +78,31 @@ class ProductController extends Controller
         $features = is_string($product->features) ? json_decode($product->features, true) : $product->features;
 
         return view('pages.product-details', compact('product', 'recommendedProducts', 'features'));
+    }
+
+    public function storeReview(Request $request, $productId)
+    {
+        // 1. Validações de segurança para garantir que ninguém envie dados vazios ou notas inválidas
+        $request->validate([
+            'user_name' => 'required|string|max:255',
+            'comment'   => 'required|string|max:1000',
+            'rating'    => 'required|integer|min:1|max:5',
+        ]);
+
+        // 2. Encontra o produto no banco
+        $product = Product::findOrFail($productId);
+
+        // 3. Salva a nova avaliação no banco
+        $product->reviews()->create([
+            'user_name' => $request->user_name,
+            'comment'   => $request->comment,
+            'rating'    => $request->rating,
+        ]);
+
+        // 4. Executa a nossa função para recalcular as estrelas!
+        $product->recalculateRating();
+
+        // 5. Devolve o usuário para a página do produto com uma mensagem de sucesso
+        return back()->with('success', 'Sua avaliação foi enviada com sucesso!');
     }
 }
