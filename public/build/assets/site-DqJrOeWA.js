@@ -1,0 +1,2 @@
+document.addEventListener(`submit`,function(e){if(e.target.id!==`whatsappForm`)return;e.preventDefault();let t=document.querySelector(`#nome`).value.trim(),n=document.querySelector(`#telefone`).value.trim(),r=document.querySelector(`#objetivo`).value,i=document.querySelector(`#mensagem`).value.trim()||`Ola! Quero saber mais sobre a Healthy Way DV.`,a=[`Nome: ${t}`,n?`Telefone: ${n}`:``,`Objetivo: ${r}`,`Mensagem: ${i}`].filter(Boolean).join(`
+`);window.open(`https://wa.me/5511941101227?text=${encodeURIComponent(a)}`,`_blank`,`noopener`)});
