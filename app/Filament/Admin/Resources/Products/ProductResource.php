@@ -108,6 +108,8 @@ class ProductResource extends Resource
                                 ->directory('products/gallery')
                                 ->required()
                                 ->columnSpan(3)
+                                ->maxSize(1024)
+                                ->helperText('Tamanho máximo permitido: 1MB.')
                                 ->getUploadedFileNameForStorageUsing(
                                     fn(\Livewire\Features\SupportFileUploads\TemporaryUploadedFile $file): string =>
                                     (string) str($file->getClientOriginalName())
