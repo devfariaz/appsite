@@ -7,9 +7,9 @@
 
         <div class="bg-brand-950 py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <span class="text-brand-500 font-bold text-xs uppercase tracking-[0.2em] block mb-3">Catálogo</span>
+                <span class="text-green-300 font-bold text-xs uppercase tracking-[0.2em] block mb-3">Catálogo</span>
                 <h1 class="font-serif text-4xl lg:text-5xl font-bold text-white mb-4">Nossos Produtos</h1>
-                <p class="text-brand-200/80 max-w-xl text-[15px] sm:text-base leading-relaxed">
+                <p class="text-white/80 max-w-xl text-[15px] sm:text-base leading-relaxed">
                     Linha completa de produtos selecionados para atender às necessidades do seu bem-estar.
                 </p>
             </div>
