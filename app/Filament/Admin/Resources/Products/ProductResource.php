@@ -94,7 +94,7 @@ class ProductResource extends Resource
 
                 ComponentsSection::make('Galeria de Imagens')->components([
                     Repeater::make('images')
-                        ->label('Galeria de Imagens')
+                        //->label('Galeria de Imagens')
                         ->relationship('images')
 
                         // 1. Coloca o nome do arquivo no cabeçalho do card (perto da lixeira)
