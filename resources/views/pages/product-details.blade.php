@@ -59,7 +59,7 @@
                         </template>
                     </div>
 
-                    <!-- MODAL FULLSCREEN (À prova de falhas com CSS inline) -->
+                    <!-- MODAL FULLSCREEN (À prova de falhas com CSS inline e Botões Verdes) -->
                     <template x-teleport="body">
                         <div x-show="isFullscreen" x-effect="document.body.style.overflow = isFullscreen ? 'hidden' : ''"
                             style="display: none; position: fixed; inset: 0; z-index: 999999 !important; background-color: rgba(0,0,0,0.35);"
@@ -69,7 +69,7 @@
                             <!-- Botão Fechar (Forçado no topo direito) -->
                             <button @click="isFullscreen = false"
                                 style="position: absolute; top: 24px; right: 24px; z-index: 9999999 !important;"
-                                class="text-black hover:text-brand-800 transition-colors bg-white/50 hover:bg-white rounded-full p-2 backdrop-blur-sm">
+                                class="text-white bg-[#3b795f] hover:bg-[#1f4e3d] transition-colors rounded-full p-2 shadow-lg">
                                 <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M6 18L18 6M6 6l12 12" />
@@ -79,7 +79,7 @@
                             <!-- Botão Voltar (Forçado ao centro esquerdo) -->
                             <button @click.stop="prev()" x-show="images.length > 1"
                                 style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); z-index: 9999999 !important;"
-                                class="text-black hover:text-brand-800 bg-white/50 hover:bg-white rounded-full p-2 backdrop-blur-sm transition-colors">
+                                class="text-white bg-[#3b795f] hover:bg-[#1f4e3d] transition-colors rounded-full p-2 shadow-lg">
                                 <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -90,19 +90,19 @@
                             <!-- Imagem Ampliada -->
                             <img :src="images[currentIndex]" @click.outside="isFullscreen = false"
                                 style="max-width: 90vw; max-height: 90vh; z-index: 999998;"
-                                class="object-contain select-none shadow-2xl rounded-xl">
+                                class="object-contain select-none shadow-2xl rounded-xl bg-white/10">
 
                             <!-- Botão Avançar (Forçado ao centro direito) -->
                             <button @click.stop="next()" x-show="images.length > 1"
                                 style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); z-index: 9999999 !important;"
-                                class="text-black hover:text-brand-800 bg-white/50 hover:bg-white rounded-full p-2 backdrop-blur-sm transition-colors">
+                                class="text-white bg-[#3b795f] hover:bg-[#1f4e3d] transition-colors rounded-full p-2 shadow-lg">
                                 <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9 5l7 7-7 7" />
                                 </svg>
                             </button>
-                        </div> 
+                        </div>
                     </template>
                 </div>
 
