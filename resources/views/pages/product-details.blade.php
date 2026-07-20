@@ -66,16 +66,16 @@
 
                         <!-- Botão Fechar (Canto superior direito) -->
                         <button @click="isFullscreen = false"
-                            class="absolute top-6 right-6 sm:top-10 sm:right-10 text-white/50 hover:text-white transition-colors z-[110]">
+                            class="fixed top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white transition-colors z-[110]">
                             <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
 
-                        <!-- Botão Voltar (Fullscreen) -->
+                        <!-- Botão Voltar (Fullscreen) - Fixado ao centro esquerdo -->
                         <button @click.stop="prev()" x-show="images.length > 1"
-                            class="absolute left-4 sm:left-10 text-white/50 hover:text-white p-2 sm:p-4 z-[110]">
+                            class="fixed left-4 sm:left-10 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 sm:p-4 z-[110]">
                             <svg class="w-10 h-10 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                             </svg>
@@ -85,9 +85,9 @@
                         <img :src="images[currentIndex]" @click.outside="isFullscreen = false"
                             class="max-w-full max-h-full object-contain select-none">
 
-                        <!-- Botão Avançar (Fullscreen) -->
+                        <!-- Botão Avançar (Fullscreen) - Fixado ao centro direito -->
                         <button @click.stop="next()" x-show="images.length > 1"
-                            class="absolute right-4 sm:right-10 text-white/50 hover:text-white p-2 sm:p-4 z-[110]">
+                            class="fixed right-4 sm:right-10 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 sm:p-4 z-[110]">
                             <svg class="w-10 h-10 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
