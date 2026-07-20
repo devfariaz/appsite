@@ -34,7 +34,7 @@
                             </svg>
                         </button>
 
-                        <!-- A imagem principal agora tem @click para abrir o fullscreen e cursor-pointer -->
+                        <!-- Imagem clicável -->
                         <img :src="images[currentIndex]" @click="isFullscreen = true"
                             class="w-full h-full object-contain p-8 transition-all duration-300 cursor-pointer hover:scale-105"
                             :alt="'{{ $product->name }}'">
@@ -59,40 +59,47 @@
                         </template>
                     </div>
 
-                    <!-- MODAL FULLSCREEN (Invisível por padrão) -->
-                    <div x-show="isFullscreen" style="display: none;"
-                        class="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 sm:p-8 backdrop-blur-sm"
-                        @keydown.escape.window="isFullscreen = false" x-transition.opacity.duration.300ms>
+                    <!-- MODAL FULLSCREEN (Teleportado para o Body) -->
+                    <template x-teleport="body">
+                        <div x-show="isFullscreen" style="display: none;"
+                            x-effect="document.body.style.overflow = isFullscreen ? 'hidden' : ''"
+                            class="fixed inset-0 z-[99999] bg-black/95 flex items-center justify-center p-4 sm:p-8 backdrop-blur-md"
+                            @keydown.escape.window="isFullscreen = false" x-transition.opacity.duration.300ms>
 
-                        <!-- Botão Fechar (Canto superior direito) -->
-                        <button @click="isFullscreen = false"
-                            class="fixed top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white transition-colors z-[110]">
-                            <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
+                            <!-- Botão Fechar (Cravado no topo direito) -->
+                            <button @click="isFullscreen = false"
+                                class="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white transition-colors z-[100000]">
+                                <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
 
-                        <!-- Botão Voltar (Fullscreen) - Fixado ao centro esquerdo -->
-                        <button @click.stop="prev()" x-show="images.length > 1"
-                            class="fixed left-4 sm:left-10 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 sm:p-4 z-[110]">
-                            <svg class="w-10 h-10 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                            </svg>
-                        </button>
+                            <!-- Botão Voltar (Centralizado à esquerda) -->
+                            <button @click.stop="prev()" x-show="images.length > 1"
+                                class="absolute left-4 sm:left-10 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 sm:p-4 z-[100000]">
+                                <svg class="w-10 h-10 sm:w-12 sm:h-12" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
 
-                        <!-- Imagem Ampliada (Fecha se clicar fora dela) -->
-                        <img :src="images[currentIndex]" @click.outside="isFullscreen = false"
-                            class="max-w-full max-h-full object-contain select-none">
+                            <!-- Imagem Ampliada -->
+                            <img :src="images[currentIndex]" @click.outside="isFullscreen = false"
+                                class="max-w-full max-h-full object-contain select-none z-[99999]">
 
-                        <!-- Botão Avançar (Fullscreen) - Fixado ao centro direito -->
-                        <button @click.stop="next()" x-show="images.length > 1"
-                            class="fixed right-4 sm:right-10 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 sm:p-4 z-[110]">
-                            <svg class="w-10 h-10 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
-                    </div>
+                            <!-- Botão Avançar (Centralizado à direita) -->
+                            <button @click.stop="next()" x-show="images.length > 1"
+                                class="absolute right-4 sm:right-10 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 sm:p-4 z-[100000]">
+                                <svg class="w-10 h-10 sm:w-12 sm:h-12" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                    </template>
                 </div>
 
                 <!-- Textos e Infos do Produto -->
