@@ -62,16 +62,15 @@
                     <!-- MODAL FULLSCREEN (À prova de falhas com CSS inline) -->
                     <template x-teleport="body">
                         <div x-show="isFullscreen" x-effect="document.body.style.overflow = isFullscreen ? 'hidden' : ''"
-                            style="display: none; position: fixed; inset: 0; z-index: 999999 !important; background-color: rgba(0,0,0,0.95);"
+                            style="display: none; position: fixed; inset: 0; z-index: 999999 !important; background-color: rgba(0,0,0,0.35);"
                             class="flex items-center justify-center backdrop-blur-md"
                             @keydown.escape.window="isFullscreen = false" x-transition.opacity.duration.300ms>
 
                             <!-- Botão Fechar (Forçado no topo direito) -->
                             <button @click="isFullscreen = false"
                                 style="position: absolute; top: 24px; right: 24px; z-index: 9999999 !important;"
-                                class="text-white/50 hover:text-white transition-colors">
-                                <svg class="w-10 h-10 md:w-12 md:h-12" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
+                                class="text-black hover:text-brand-800 transition-colors bg-white/50 hover:bg-white rounded-full p-2 backdrop-blur-sm">
+                                <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M6 18L18 6M6 6l12 12" />
                                 </svg>
@@ -80,8 +79,8 @@
                             <!-- Botão Voltar (Forçado ao centro esquerdo) -->
                             <button @click.stop="prev()" x-show="images.length > 1"
                                 style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); z-index: 9999999 !important;"
-                                class="text-white/50 hover:text-white p-2 sm:p-4">
-                                <svg class="w-10 h-10 sm:w-14 sm:h-14" fill="none" stroke="currentColor"
+                                class="text-black hover:text-brand-800 bg-white/50 hover:bg-white rounded-full p-2 backdrop-blur-sm transition-colors">
+                                <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 19l-7-7 7-7" />
@@ -91,13 +90,13 @@
                             <!-- Imagem Ampliada -->
                             <img :src="images[currentIndex]" @click.outside="isFullscreen = false"
                                 style="max-width: 90vw; max-height: 90vh; z-index: 999998;"
-                                class="object-contain select-none">
+                                class="object-contain select-none shadow-2xl rounded-xl">
 
                             <!-- Botão Avançar (Forçado ao centro direito) -->
                             <button @click.stop="next()" x-show="images.length > 1"
                                 style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); z-index: 9999999 !important;"
-                                class="text-white/50 hover:text-white p-2 sm:p-4">
-                                <svg class="w-10 h-10 sm:w-14 sm:h-14" fill="none" stroke="currentColor"
+                                class="text-black hover:text-brand-800 bg-white/50 hover:bg-white rounded-full p-2 backdrop-blur-sm transition-colors">
+                                <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9 5l7 7-7 7" />
